@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.d(TAG, "onActivityResult: " + result);
             } else {
                 Log.d(TAG, "onActivityResult: Fail");
-                txtGotoCal.setText("Huy roi");
             }
 
         }

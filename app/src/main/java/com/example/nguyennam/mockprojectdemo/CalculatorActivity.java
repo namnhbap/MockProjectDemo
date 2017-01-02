@@ -3,7 +3,6 @@ package com.example.nguyennam.mockprojectdemo;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,7 +10,6 @@ import android.widget.EditText;
 public class CalculatorActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String EXTRA_DATA = "EXTRA_DATA";
-    private static final String TAG = "Nam";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,53 +79,69 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         EditText edtTinh = (EditText) findViewById(R.id.edtTinh);
         Button btnChangeBang = (Button) findViewById(R.id.btnBang);
+        String text;
+        String xong = "Xong";
+        String bang = "=";
+
         switch (v.getId()){
             case R.id.btn0:
-                edtTinh.setText(edtTinh.getText().toString()+"0");
+                text = edtTinh.getText().toString() + "0";
+                edtTinh.setText(text);
                 break;
 
             case R.id.btn1:
-                edtTinh.setText(edtTinh.getText().toString()+"1");
+                text = edtTinh.getText().toString() + "1";
+                edtTinh.setText(text);
                 break;
 
             case R.id.btn2:
-                edtTinh.setText(edtTinh.getText().toString()+"2");
+                text = edtTinh.getText().toString() + "2";
+                edtTinh.setText(text);
                 break;
 
             case R.id.btn3:
-                edtTinh.setText(edtTinh.getText().toString()+"3");
+                text = edtTinh.getText().toString() + "3";
+                edtTinh.setText(text);
                 break;
 
             case R.id.btn4:
-                edtTinh.setText(edtTinh.getText().toString()+"4");
+                text = edtTinh.getText().toString() + "4";
+                edtTinh.setText(text);
                 break;
 
             case R.id.btn5:
-                edtTinh.setText(edtTinh.getText().toString()+"5");
+                text = edtTinh.getText().toString() + "5";
+                edtTinh.setText(text);
                 break;
 
             case R.id.btn6:
-                edtTinh.setText(edtTinh.getText().toString()+"6");
+                text = edtTinh.getText().toString() + "6";
+                edtTinh.setText(text);
                 break;
 
             case R.id.btn7:
-                edtTinh.setText(edtTinh.getText().toString()+"7");
+                text = edtTinh.getText().toString() + "7";
+                edtTinh.setText(text);
                 break;
 
             case R.id.btn8:
-                edtTinh.setText(edtTinh.getText().toString()+"8");
+                text = edtTinh.getText().toString() + "8";
+                edtTinh.setText(text);
                 break;
 
             case R.id.btn9:
-                edtTinh.setText(edtTinh.getText().toString()+"9");
+                text = edtTinh.getText().toString() + "9";
+                edtTinh.setText(text);
                 break;
 
             case R.id.btn30:
-                edtTinh.setText(edtTinh.getText().toString()+"000");
+                text = edtTinh.getText().toString() + "000";
+                edtTinh.setText(text);
                 break;
 
             case R.id.btnPhay:
-                edtTinh.setText(edtTinh.getText().toString()+".");
+                text = edtTinh.getText().toString() + ".";
+                edtTinh.setText(text);
                 break;
 
             case R.id.btnC:
@@ -135,28 +149,32 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
                 break;
 
             case R.id.btnBack:
-                edtTinh.setText(catKyTuCuoi(edtTinh.getText().toString()));
+                edtTinh.setText(catKyTuCuoi(String.valueOf(edtTinh.getText())));
                 break;
 
             case R.id.btnCong:
-                edtTinh.setText(edtTinh.getText().toString()+"+");
+                text = edtTinh.getText().toString() + "+";
+                edtTinh.setText(text);
                 break;
 
             case R.id.btnTru:
-                edtTinh.setText(edtTinh.getText().toString()+"-");
+                text = edtTinh.getText().toString() + "-";
+                edtTinh.setText(text);
                 break;
 
             case R.id.btnNhan:
-                edtTinh.setText(edtTinh.getText().toString()+"*");
+                text = edtTinh.getText().toString() + "*";
+                edtTinh.setText(text);
                 break;
 
             case R.id.btnChia:
-                edtTinh.setText(edtTinh.getText().toString()+"/");
+                text = edtTinh.getText().toString() + "/";
+                edtTinh.setText(text);
                 break;
 
             case R.id.btnBang:
                if (btnChangeBang.getText().toString().equals("=")){
-                   String result = Double.toString(eval(edtTinh.getText().toString()));
+                   String result = Double.toString(eval(String.valueOf(edtTinh.getText())));
                    String s;
                    //cat .0
                    for (int i=0; i<result.length(); i++){
@@ -168,11 +186,11 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
                        }
                    }
 
-                   btnChangeBang.setText("Xong");
+                   btnChangeBang.setText(xong);
                    edtTinh.setText(result);
                }else {
                    final Intent data = new Intent();
-                   String str = edtTinh.getText().toString();
+                   String str = String.valueOf(edtTinh.getText());
                    data.putExtra(EXTRA_DATA, str);
                    setResult(RESULT_OK, data);
                    finish();
@@ -181,12 +199,12 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
                 break;
         }
         //doi phim = thanh chu xong
-        String curText = edtTinh.getText().toString();
-        if ((curText.indexOf("+")==-1)&&(curText.indexOf("-")==-1)&&(curText.indexOf("*")==-1)&&(curText.indexOf("/")==-1)){
-            btnChangeBang.setText("Xong");
+        String curText = String.valueOf(edtTinh.getText());
+        if ((!curText.contains("+"))&&(!curText.contains("-"))&&(!curText.contains("*"))&&(!curText.contains("/"))){
+            btnChangeBang.setText(xong);
 
         } else {
-            btnChangeBang.setText("=");
+            btnChangeBang.setText(bang);
         }
         edtTinh.setSelection(edtTinh.length()); //set cursor cuoi text
 

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MockProjectDemo</string>
     <string name="btnC">C</string>
-    <string name="btnNhan">x</string>
+    <string name="btnNhan">*</string>
     <string name="btnChia">/</string>
     <string name="btnBack">Back</string>
     <string name="btn7">7</string>
